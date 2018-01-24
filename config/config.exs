@@ -30,4 +30,7 @@ use Mix.Config
 #     import_config "#{Mix.env}.exs"
 
 config :maru, Hitomi.Router,
+  versioning: [
+    using: :path
+  ],
 	http: [port: 3456]

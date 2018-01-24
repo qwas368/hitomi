@@ -3,7 +3,7 @@ defmodule Hitomi.Router do
 
   before do
     plug Plug.Logger
-    plug Plug.Static, at: "/static", from: "/my/static/path/"
+    plug Plug.Static, at: "/", from: "lib/web/static/"
   end
 
   plug Plug.Parsers,
@@ -12,8 +12,6 @@ defmodule Hitomi.Router do
     parsers: [:urlencoded, :json, :multipart]
 
   rescue_from Unauthorized, as: e do
-    IO.inspect e
-
     conn
     |> put_status(401)
     |> text("Unauthorized")
@@ -24,16 +22,17 @@ defmodule Hitomi.Router do
   rescue_from :all, as: e do
     conn
     |> put_status(Plug.Exception.status(e))
-    |> text("Server Error")
+    |> text("Server Error!")
   end
 
   defp custom_error(conn, exception) do
     conn
     |> put_status(500)
-    |> text(exception.message)
+    |> json(%{ code: 500, message: exception.message })
   end
 
   namespace :api do
     mount Hitomi.Api.V1.Homepage
+    mount Hitomi.Api.V2.Homepage
   end
 end
