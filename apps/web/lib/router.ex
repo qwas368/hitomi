@@ -20,6 +20,7 @@ defmodule Hitomi.Web.Router do
   rescue_from [MatchError, RuntimeError], with: :custom_error
 
   rescue_from :all, as: e do
+    IO.inspect e
     conn
     |> put_status(Plug.Exception.status(e))
     |> text("Server Error!")
