@@ -1,10 +1,6 @@
-defmodule Hitomi.Repo.ImageRepo do
-  alias Hitomi.Models.Image, as: Image
-
-end
-
-defimpl Hitomi.Repo, for: Hitomi.Models.Image do
-  alias Hitomi.Models.Image, as: Image
+defmodule Hitomi.Image.Repo do
+  use Hitomi.Repo
+  alias Hitomi.Models.Image
 
   def insert(data) do
     {:ok, data}
