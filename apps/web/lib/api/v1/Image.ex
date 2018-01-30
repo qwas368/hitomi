@@ -16,8 +16,17 @@ defmodule Hitomi.Web.Api.V1.Image do
       end
     end
 
-    get do
-      json(conn, %{ list: "a list" })
+    params do
+      requires :id, type: Integer
+      requires :url, type: String
+      requires :tag, type: List[Atom]
+    end
+    post do
+      post_result = params
+      |> Repo.insert
+      |> IO.inspect
+
+      conn |> json(post_result)
     end
   end
 end
