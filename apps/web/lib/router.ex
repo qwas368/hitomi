@@ -3,7 +3,7 @@ defmodule Hitomi.Web.Router do
 
   before do
     plug Plug.Logger
-    plug Plug.Static, at: "/", from: "lib/web/static/"
+    plug Plug.Static, at: "/", from: "apps/web/lib/static/"
   end
 
   plug Plug.Parsers,
