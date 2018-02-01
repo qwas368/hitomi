@@ -3,9 +3,10 @@ defmodule Hitomi.Web.Api.V1.Homepage do
 
   version "v1"
   get do
-    json(conn, "This is v1 api home page." )
+    conn
+    |> put_status(200)
+    |> text("This is v1 api home page.")
   end
 
   mount Hitomi.Web.Api.V1.Image
-  mount Hitomi.Web.Api.V1.User
 end

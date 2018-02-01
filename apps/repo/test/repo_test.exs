@@ -1,8 +1,14 @@
 defmodule Hitomi.RepoTest do
   use ExUnit.Case
-  doctest Hitomi.Repo
+  alias Hitomi.Models.Image
+  alias Hitomi.Image.Repo
 
-  test "greets the world" do
-    assert Hitomi.Repo.hello() == :world
+  test "insert&get" do
+    assert %Image{} = Repo.insert(%Image{})
+    assert {:ok, %Image{}} = Repo.get(0)
+  end
+
+  test "get" do
+    assert {:error, "can't find"} = Repo.get(0)
   end
 end

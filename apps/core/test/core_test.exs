@@ -2,7 +2,7 @@ defmodule Hitimi.CoreTest do
   use ExUnit.Case
   doctest Hitimi.Core
 
-  test "greets the world" do
-    assert Hitimi.Core.hello() == :world
+  test "pure_function" do
+    assert Hitimi.Core.pure_function() == :pure_function
   end
 end
