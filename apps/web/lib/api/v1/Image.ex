@@ -24,7 +24,6 @@ defmodule Hitomi.Web.Api.V1.Image do
     post do
       post_result = params
       |> Repo.insert
-      |> IO.inspect
 
       conn |> json(post_result)
     end

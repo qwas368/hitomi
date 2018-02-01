@@ -3,7 +3,8 @@ defmodule Hitomi.Web.Api.V2.Homepage do
 
   version "v2"
   get do
-    json(conn, "This is v2 api home page." )
+    conn
+    |> put_status(200)
+    |> text("This is v2 api home page.")
   end
-
 end

@@ -1,8 +1,8 @@
 defmodule Hitomi.ModelsTest do
   use ExUnit.Case
-  doctest Hitomi.Models
-
-  test "greets the world" do
-    assert Hitomi.Models.hello() == :world
+  alias Hitomi.Models.Image
+  
+  test "Image model" do
+    assert %Image{}.id == 0
   end
 end

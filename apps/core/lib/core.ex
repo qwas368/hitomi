@@ -1,18 +1,9 @@
 defmodule Hitimi.Core do
   @moduledoc """
-  Documentation for Hitimi.Core.
+  This is core app, all function are required to pure function.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Hitimi.Core.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def pure_function do
+    :pure_function
   end
 end

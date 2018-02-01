@@ -12,14 +12,6 @@ defmodule Hitomi.Image.Repo do
   def get(id) do
     Agent.get(id)
   end
-
-  def delete(data) do
-    {:ok, data}
-  end
-
-  def update(data) do
-    {:ok, data}
-  end
 end
 
 defmodule Hitomi.Image.Agent do
