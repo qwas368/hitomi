@@ -20,4 +20,4 @@ config :maru, Hitomi.Web.Router,
   versioning: [
     using: :path
   ],
-	http: [port: 3456]
+  http: [port: 3456]

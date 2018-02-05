@@ -13,20 +13,20 @@ defmodule Hitomi.Repo do
   @doc """
   Insert model struct to a data store.
   """
-  @callback insert(t) :: {:ok, t} | {:error, String.t}
+  @callback insert(t) :: {:ok, t} | {:error, String.t()}
 
   @doc """
   Get model by primary key from a data store.
   """
-  @callback get(Integer) :: {:ok, t} | {:ok, nil} | {:error, String.t}
+  @callback get(Integer) :: {:ok, t} | {:ok, nil} | {:error, String.t()}
 
   @doc """
   Delete model using its primary key.
   """
-  @callback delete(t) :: {:ok, t} | {:error, String.t}
+  @callback delete(t) :: {:ok, t} | {:error, String.t()}
 
   @doc """
   Update model using its primary key.
   """
-  @callback update(t) :: {:ok, t} | {:error, String.t}
+  @callback update(t) :: {:ok, t} | {:error, String.t()}
 end

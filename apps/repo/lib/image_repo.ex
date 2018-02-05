@@ -15,20 +15,20 @@ defmodule Hitomi.Image.Repo do
 end
 
 defmodule Hitomi.Image.Agent do
-	@name __MODULE__
+  @name __MODULE__
 
-	def start_link do
-		Agent.start_link(fn -> %{} end, name: @name)
-	end
+  def start_link do
+    Agent.start_link(fn -> %{} end, name: @name)
+  end
 
-	def insert(image) do
-		Agent.update(@name, &Map.put_new(&1, image.id, image))
-	end
+  def insert(image) do
+    Agent.update(@name, &Map.put_new(&1, image.id, image))
+  end
 
-	def get(id) do
-		case Agent.get(@name, &Map.get(&1, id, nil)) do
+  def get(id) do
+    case Agent.get(@name, &Map.get(&1, id, nil)) do
       nil -> {:error, "can't find"}
       image -> {:ok, image}
     end
-	end
+  end
 end

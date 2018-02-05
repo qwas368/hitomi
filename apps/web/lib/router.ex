@@ -2,14 +2,16 @@ defmodule Hitomi.Web.Router do
   use Maru.Router
 
   before do
-    plug Plug.Logger
-    plug Plug.Static, at: "/", from: "apps/web/lib/static/"
+    plug(Plug.Logger)
+    plug(Plug.Static, at: "/", from: "apps/web/lib/static/")
   end
 
-  plug Plug.Parsers,
+  plug(
+    Plug.Parsers,
     pass: ["*/*"],
     json_decoder: Poison,
     parsers: [:urlencoded, :json, :multipart]
+  )
 
   rescue_from Unauthorized, as: e do
     conn
@@ -17,7 +19,7 @@ defmodule Hitomi.Web.Router do
     |> text("Unauthorized")
   end
 
-  rescue_from [MatchError, RuntimeError], with: :custom_error
+  rescue_from([MatchError, RuntimeError], with: :custom_error)
 
   rescue_from :all, as: e do
     conn
@@ -28,11 +30,11 @@ defmodule Hitomi.Web.Router do
   defp custom_error(conn, exception) do
     conn
     |> put_status(500)
-    |> json(%{ code: 500, message: exception.message })
+    |> json(%{code: 500, message: exception.message})
   end
 
   namespace :api do
-    mount Hitomi.Web.Api.V1.Homepage
-    mount Hitomi.Web.Api.V2.Homepage
+    mount(Hitomi.Web.Api.V1.Homepage)
+    mount(Hitomi.Web.Api.V2.Homepage)
   end
 end

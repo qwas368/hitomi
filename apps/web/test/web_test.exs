@@ -14,11 +14,12 @@ defmodule Hitomi.WebTest do
   test "image" do
     test_input = %Image{id: 1, tag: [:people], url: "https://imgur.com/"}
 
-    assert test_input = build_conn()
-    |> Plug.Conn.put_req_header("content-type", "application/json")
-    |> put_body_or_params(Poison.encode!(test_input))
-    |> post("/api/v1/image")
-    |> json_response
+    assert test_input =
+             build_conn()
+             |> Plug.Conn.put_req_header("content-type", "application/json")
+             |> put_body_or_params(Poison.encode!(test_input))
+             |> post("/api/v1/image")
+             |> json_response
 
     assert test_input = get("/api/v1/image/1") |> json_response
   end
