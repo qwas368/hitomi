@@ -1,6 +1,7 @@
 defmodule Hitomi.Web.Api.V1.Image do
   use Maru.Router
   alias Hitomi.Image.Repo
+  alias Hitomi.Image.Service
 
   namespace :image do
     route_param :id do
@@ -24,11 +25,12 @@ defmodule Hitomi.Web.Api.V1.Image do
     end
 
     post do
-      post_result =
-        params
-        |> Repo.insert()
-
-      conn |> json(post_result)
+      params
+      |> Service.insert_image_model()
+      |> case do
+        {:ok, t} -> conn |> json(t)
+        {:error, message} -> conn |> json(message)
+      end
     end
   end
 end

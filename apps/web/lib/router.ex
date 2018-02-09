@@ -24,7 +24,7 @@ defmodule Hitomi.Web.Router do
   rescue_from :all, as: e do
     conn
     |> put_status(Plug.Exception.status(e))
-    |> text("Server Error!")
+    |> text(Exception.message(e))
   end
 
   defp custom_error(conn, exception) do
