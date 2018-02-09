@@ -1,13 +1,15 @@
 defmodule Hitomi.Web.Api.V1.Image do
   use Maru.Router
   alias Hitomi.Image.Repo
+  alias Hitomi.Image.Service
 
   namespace :image do
     route_param :id do
       get do
-        query_result = params[:id]
-        |> String.to_integer
-        |> Repo.get
+        query_result =
+          params[:id]
+          |> String.to_integer()
+          |> Repo.get()
 
         case query_result do
           {:ok, image} -> conn |> json(image)
@@ -17,15 +19,18 @@ defmodule Hitomi.Web.Api.V1.Image do
     end
 
     params do
-      requires :id, type: Integer
-      requires :url, type: String
-      requires :tag, type: List[Atom]
+      requires(:id, type: Integer)
+      requires(:url, type: String)
+      requires(:tag, type: List[Atom])
     end
-    post do
-      post_result = params
-      |> Repo.insert
 
-      conn |> json(post_result)
+    post do
+      params
+      |> Service.insert_image_model()
+      |> case do
+        {:ok, t} -> conn |> json(t)
+        {:error, message} -> conn |> json(message)
+      end
     end
   end
 end

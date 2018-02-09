@@ -1,13 +1,13 @@
 # Hitomi
 
-This is a example of rest api server without phoenix framework. 
+This is a example of rest api server without phoenix framework.
 
 ## Dependecies
-- **elixir** v1.5
+- **elixir** v1.6.2
 - **cowboy** v1.1
 - [plug](https://github.com/elixir-plug/plug)
 - [maru](https://github.com/elixir-maru/maru)
-  
+
 ## Runing
 ```bash
 iex -S mix

@@ -1,7 +1,8 @@
 defmodule Hitomi.Web.Api.V2.Homepage do
   use Maru.Router
 
-  version "v2"
+  version("v2")
+
   get do
     conn
     |> put_status(200)
